@@ -1,5 +1,6 @@
 import Header from "./Header";
 import SummaryPinfo from "./SummaryPinfo";
+import Summaryinfo from "./SummaryInfo";
 import { useFormContext } from "react-hook-form";
 import { css } from "@emotion/css";
 import { useCalculator } from "../provider/useCalculator";
@@ -104,27 +105,27 @@ function Summary() {
       <Header />
       <div>
         <div className="title">Summary</div>
-        <SummaryPinfo
+        <Summaryinfo
           name={"Destination Country"}
           value={quotationsInfo?.country_name}
         />
-        <SummaryPinfo name={"Services"} value={quotationsInfo?.service_name} />
+        <Summaryinfo name={"Services"} value={quotationsInfo?.service_name} />
         <SummaryPinfo
           name={"Source Amount"}
           value={watch("inputMoneySend")}
           // value={quotationsInfo?.source_amount}
-          // currency={quotationsInfo?.source_currency_iso_code}
+          currency={quotationsInfo?.source_currency_iso_code}
         />
         <SummaryPinfo
           name={"Destination Amount"}
           value={watch("inputMoneyRecieve")}
           // value={quotationsInfo?.destination_amount}
-          // currency={quotationsInfo?.destination_currency_iso_code}
+          currency={quotationsInfo?.destination_currency_iso_code}
         />
         <hr className="line" />
-        <SummaryPinfo name={"First Name"} value={watch("first_name")} />
-        <SummaryPinfo name={"Last Name"} value={watch("last_name")} />
-        <SummaryPinfo name={"Addrres"} value={watch("Address")} />
+        <Summaryinfo name={"First Name"} value={watch("first_name")} />
+        <Summaryinfo name={"Last Name"} value={watch("last_name")} />
+        <Summaryinfo name={"Addrres"} value={watch("Address")} />
         <hr className="line" />
       </div>
       <div className="submitContainer">

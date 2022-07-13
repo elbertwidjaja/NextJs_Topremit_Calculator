@@ -1,7 +1,7 @@
 import { Progress } from "@chakra-ui/react";
 import { css } from "@emotion/css";
 import { usePage } from "../pages/index";
-import { BackButton } from "../component/BackButton";
+import { BackButton } from "./BackButton";
 
 const styled = {
   root: css`

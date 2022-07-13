@@ -2,28 +2,62 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useFormContext } from "react-hook-form";
 
+interface Calculator {
+  fetchServices: (countryIsoCode) => void;
+  handleIsoCode: (e: any) => void;
+  setServiceId: React.Dispatch<(prevState: string) => string>;
+  serviceRadioButtonName: [];
+  serviceRadioButtonId: [];
+  countries: any[];
+  countryIsoCode: "";
+  currency: string;
+  currencyLoading: boolean;
+  quotationsInfo: {
+    fx_rate: string | undefined;
+    fee: number | undefined;
+    note: string | undefined;
+    country_name: string | undefined;
+    service_name: string | undefined;
+    source_currency_iso_code: string | undefined;
+    destination_currency_iso_code: string | undefined;
+  };
+  counter: number;
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+  serviceRadioButton: any[];
+  setServiceRadioButton: React.Dispatch<React.SetStateAction<any[]>>;
+  serviceId: string;
+  setCountries: React.Dispatch<React.SetStateAction<any[]>>;
+}
 const defaultValue = {
-  fetchServices: () => {},
-  handleIsoCode: () => {},
-  setServiceId: () => {},
+  fetchServices: (value) => {},
+  handleIsoCode: (id) => {},
+  setServiceId: (id) => {},
   serviceRadioButtonName: [],
   serviceRadioButtonId: [],
   countries: [],
   countryIsoCode: "",
   currency: "",
   currencyLoading: false,
-  quotationsInfo: "",
+  quotationsInfo: {
+    fx_rate: "",
+    fee: 0,
+    note: "",
+    country_name: "",
+    service_name: "",
+    source_currency_iso_code: "",
+    destination_currency_iso_code: ""
+  },
   counter: 0
 };
 
-const CalculatorContext = createContext(defaultValue);
+const CalculatorContext = createContext<Calculator>(defaultValue as any);
 
 function CalculatorProvider({ children }) {
   const { watch, setValue } = useFormContext();
   const [countries, setCountries] = useState([]);
   const [countryIsoCode, setCountryIsoCode] = useState();
   const [serviceRadioButton, setServiceRadioButton] = useState([]);
-  const [serviceId, setServiceId] = useState();
+  const [serviceId, setServiceId] = useState("");
   const [currency, setCurrency] = useState();
   const [currencyLoading, setCurrencyLoading] = useState(false);
   const [quotationsInfo, setQuotationsInfo] = useState();
@@ -127,6 +161,10 @@ function CalculatorProvider({ children }) {
   return (
     <CalculatorContext.Provider
       value={{
+        countryIsoCode,
+        setServiceRadioButton,
+        serviceRadioButtonName,
+        serviceRadioButtonId,
         serviceRadioButton,
         countries,
         fetchServices,
