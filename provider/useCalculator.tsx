@@ -6,8 +6,6 @@ interface Calculator {
   fetchServices: (countryIsoCode) => void;
   handleIsoCode: (e: any) => void;
   setServiceId: React.Dispatch<(prevState: string) => string>;
-  serviceRadioButtonName: [];
-  serviceRadioButtonId: [];
   countries: any[];
   countryIsoCode: "";
   currency: string;
@@ -32,8 +30,6 @@ const defaultValue = {
   fetchServices: (value) => {},
   handleIsoCode: (id) => {},
   setServiceId: (id) => {},
-  serviceRadioButtonName: [],
-  serviceRadioButtonId: [],
   countries: [],
   countryIsoCode: "",
   currency: "",
@@ -111,7 +107,9 @@ function CalculatorProvider({ children }) {
   async function fetchQuotation() {
     const type = watch("isSendAmount");
     console.log(type, "type");
-    const name = watch("isSendAmount") ? "inputMoneySend" : "inputMoneyRecieve";
+    const amount = watch("isSendAmount")
+      ? "inputMoneySend"
+      : "inputMoneyRecieve";
 
     const fetchQuotation = await axios.post(
       process.env.NEXT_PUBLIC_API_KEY + "web/quotations",
@@ -119,7 +117,7 @@ function CalculatorProvider({ children }) {
         service: serviceId,
         currency: currency,
         country: countryIsoCode,
-        amount: unformatNumber(watch(name)),
+        amount: unformatNumber(watch(amount)),
         is_send_amount: type
       }
     );
@@ -163,8 +161,6 @@ function CalculatorProvider({ children }) {
       value={{
         countryIsoCode,
         setServiceRadioButton,
-        serviceRadioButtonName,
-        serviceRadioButtonId,
         serviceRadioButton,
         countries,
         fetchServices,

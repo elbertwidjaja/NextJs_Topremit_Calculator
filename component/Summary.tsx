@@ -113,13 +113,11 @@ function Summary() {
         <SummaryPinfo
           name={"Source Amount"}
           value={watch("inputMoneySend")}
-          // value={quotationsInfo?.source_amount}
           currency={quotationsInfo?.source_currency_iso_code}
         />
         <SummaryPinfo
           name={"Destination Amount"}
           value={watch("inputMoneyRecieve")}
-          // value={quotationsInfo?.destination_amount}
           currency={quotationsInfo?.destination_currency_iso_code}
         />
         <hr className="line" />
