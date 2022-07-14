@@ -1,6 +1,7 @@
 import { Select } from "@chakra-ui/react";
 import { useCalculator } from "../provider/useCalculator";
 import { css } from "@emotion/css";
+import { useState } from "react";
 
 const styled = {
   root: css`

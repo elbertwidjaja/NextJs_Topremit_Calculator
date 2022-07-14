@@ -1,6 +1,12 @@
 import NumberFormat from "react-number-format";
 
-function InputMoney({ currency, placeholder, field, onChange }) {
+interface InputMoney {
+  currency: string;
+  placeholder: string;
+  field: any;
+  onChange: any;
+}
+function InputMoney({ currency, placeholder, field, onChange }: InputMoney) {
   return (
     <div className="input">
       <NumberFormat

@@ -48,7 +48,7 @@ function RecipentForm() {
       })}
     >
       <Header />
-      <div className="title">Recipent's Personal Detail</div>
+      <div className="title">Recipents Personal Detail</div>
       <div className="handleInput">
         <Controller
           control={control}

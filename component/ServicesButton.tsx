@@ -1,5 +1,5 @@
 import { useRadio, useRadioGroup, Box, HStack } from "@chakra-ui/react";
-import { useCalculator } from "../provider/useCalculator.js";
+import { useCalculator } from "../provider/useCalculator";
 import { css } from "@emotion/css";
 
 const styled = {
